@@ -1,0 +1,48 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.9'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.security.note'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Spring data jpa
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// Security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// 임시로 사이트 생성을 위한 thymeleaf
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	// web mvc 추가
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// thymeleaf에서 Spring Security를 좀 더 잘 보여줄 수 있는 라이브러리
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	// lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	// h2
+	runtimeOnly 'com.h2database:h2'
+	// starter test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// security test
+	testImplementation 'org.springframework.security:spring-security-test'
+	// junit test
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
